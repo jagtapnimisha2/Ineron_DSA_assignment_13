@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Question7:-Given a Doubly Linked List, the task is to reverse the given Doubly Linked List.
+    Example:-Original Linked list 10 8 4 2
+Reversed Linked list 2 4 8 10 -->
+    <script>
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+function reverseDoublyLinkedList(head) {
+  if (head === null) {
+    return null;
+  }
+
+  let current = head;
+  let temp = null;
+  while (current !== null) {
+    temp = current.prev;
+    current.prev = current.next;
+    current.next = temp;
+    current = current.prev;
+  }
+  head = temp.prev;
+
+  return head;
+}
+const head = new Node(10);
+const node2 = new Node(8);
+const node3 = new Node(4);
+const node4 = new Node(2);
+
+head.next = node2;
+node2.prev = head;
+node2.next = node3;
+node3.prev = node2;
+node3.next = node4;
+node4.prev = node3;
+
+const reversedList = reverseDoublyLinkedList(head);
+let current = reversedList;
+while (current !== null) {
+  document.write(" "+current.value);
+  current = current.next;
+}
+
+    </script>
+</body>
+</html>

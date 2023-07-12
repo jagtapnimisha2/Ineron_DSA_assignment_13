@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function removeDuplicates(head) {
+  if (head === null) {
+    return null;
+  }
+
+  let current = head;
+
+  while (current !== null && current.next !== null) {
+    if (current.value === current.next.value) {
+      current.next = current.next.next;
+    } else {
+      current = current.next;
+    }
+  }
+
+  return head;
+}
+const head = new Node(11);
+const node2 = new Node(11);
+const node3 = new Node(11);
+const node4 = new Node(21);
+const node5 = new Node(43);
+const node6 = new Node(43);
+const node7 = new Node(60);
+
+head.next = node2;
+node2.next = node3;
+node3.next = node4;
+node4.next = node5;
+node5.next = node6;
+node6.next = node7;
+
+const deduplicatedList = removeDuplicates(head);
+let current = deduplicatedList;
+while (current !== null) {
+  document.write(" "+current.value);
+  current = current.next;
+}
+
+    </script>
+</body>
+</html>

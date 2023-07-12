@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Question6:-
+
+Given two sorted linked lists consisting of **N** and **M** nodes respectively. The task is to merge both of the lists (in place) and return the head of the merged list.
+Example:- Input: a: 5->10->15, b: 2->3->20
+
+Output: 2->3->5->10->15->20
+
+Input: a: 1->1, b: 2->4
+
+Output: 1->1->2->4-->
+  <script>
+    class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function mergeSortedLists(list1, list2) {
+  if (list1 === null) {
+    return list2;
+  }
+  if (list2 === null) {
+    return list1;
+  }
+
+  let mergedHead = null;
+  let current = null;
+  if (list1.value <= list2.value) {
+    mergedHead = list1;
+    list1 = list1.next;
+  } else {
+    mergedHead = list2;
+    list2 = list2.next;
+  }
+
+  current = mergedHead;
+  while (list1 !== null && list2 !== null) {
+    if (list1.value <= list2.value) {
+      current.next = list1;
+      list1 = list1.next;
+    } else {
+      current.next = list2;
+      list2 = list2.next;
+    }
+    current = current.next;
+  }
+  if (list1 !== null) {
+    current.next = list1;
+  }
+  if (list2 !== null) {
+    current.next = list2;
+  }
+
+  return mergedHead;
+}
+const list1 = new Node(5);
+const node2_1 = new Node(10);
+const node3_1 = new Node(15);
+
+list1.next = node2_1;
+node2_1.next = node3_1;
+
+const list2 = new Node(2);
+const node2_2 = new Node(3);
+const node3_2 = new Node(20);
+
+list2.next = node2_2;
+node2_2.next = node3_2;
+
+const mergedList = mergeSortedLists(list1, list2);
+let current = mergedList;
+while (current !== null) {
+  document.write(" "+current.value);
+  current = current.next;
+}
+
+  </script>
+  
+</body>
+</html>
